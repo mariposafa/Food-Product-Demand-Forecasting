@@ -1,120 +1,63 @@
-# 🍱 Food Product Demand Forecasting Dashboard
+# 📊 Food Product Demand Forecasting Dashboard
 
-## 🇮🇩 Deskripsi Proyek
+## 🇬🇧 English Version
 
-Dashboard forecasting permintaan produk makanan yang dikembangkan menggunakan **Python dan Streamlit** untuk menganalisis data historis permintaan serta melakukan prediksi kebutuhan produk di masa mendatang.
+An interactive dashboard for food product demand forecasting using time series analysis with Python and Streamlit.
 
-Project ini menerapkan metode **Time Series Forecasting** menggunakan:
+This project implements forecasting methods:
 
-- **Single Exponential Smoothing (SES)**
-- **Moving Average (MA)**
+- Single Exponential Smoothing (SES)
+- Moving Average (MA)
 
-dengan optimasi parameter otomatis untuk memperoleh hasil forecasting terbaik berdasarkan evaluasi error.
+The system is designed to analyze historical demand data and generate future demand predictions with optimized parameters.
 
-Dashboard ini dirancang untuk mendukung proses **analisis data, perencanaan produksi, pengelolaan persediaan, dan pengambilan keputusan berbasis data (data-driven decision making).**
+### Features
 
----
+- Upload product demand dataset
+- Data preprocessing and validation
+- Interactive demand visualization
+- Automatic parameter optimization
+- Forecast generation
+- Forecast evaluation using MAPE and SSE
 
-## 🇬🇧 Project Description
-
-An interactive **food product demand forecasting dashboard** developed using **Python and Streamlit** to analyze historical demand data and predict future product requirements.
-
-This project implements **Time Series Forecasting methods**, including:
-
-- **Single Exponential Smoothing (SES)**
-- **Moving Average (MA)**
-
-with automatic parameter optimization to achieve the best forecasting performance based on error evaluation.
-
-The dashboard is designed to support **data analysis, production planning, inventory management, and data-driven decision making.**
 
 ---
 
-# ✨ Fitur Utama | Key Features
+# 🇮🇩 Versi Bahasa Indonesia
 
-## 🇮🇩
+Dashboard interaktif untuk melakukan peramalan permintaan produk makanan menggunakan analisis time series berbasis Python dan Streamlit.
 
-- Analisis data historis permintaan produk
-- Visualisasi tren permintaan
-- Pemilihan produk secara interaktif
-- Optimasi parameter forecasting secara otomatis
-- Perbandingan hasil forecasting dengan berbagai parameter
-- Evaluasi akurasi menggunakan metrik error
+Project ini menerapkan metode forecasting:
 
-## 🇬🇧
+- Single Exponential Smoothing (SES)
+- Moving Average (MA)
 
-- Historical demand data analysis
-- Demand trend visualization
-- Interactive product selection
-- Automatic forecasting parameter optimization
-- Forecast comparison using different parameters
-- Forecast accuracy evaluation using error metrics
+Sistem ini digunakan untuk menganalisis data permintaan historis dan menghasilkan prediksi permintaan di masa mendatang dengan parameter yang telah dioptimasi.
 
----
 
-# 📊 Metode Forecasting | Forecasting Methods
+## ✨ Fitur Utama
 
-## 1. Single Exponential Smoothing (SES)
+- Upload dataset permintaan produk
+- Validasi dan preprocessing data
+- Visualisasi pola permintaan produk
+- Optimasi parameter forecasting otomatis
+- Prediksi permintaan periode berikutnya
+- Evaluasi performa model menggunakan MAPE dan SSE
 
-### 🇮🇩
-Single Exponential Smoothing merupakan metode forecasting yang memberikan bobot lebih besar pada data terbaru untuk melakukan prediksi nilai masa depan.
-
-Pada project ini, parameter smoothing (**α**) dioptimalkan untuk mendapatkan hasil forecasting dengan error minimum.
-
-### 🇬🇧
-Single Exponential Smoothing is a forecasting method that assigns higher weights to recent observations to predict future values.
-
-In this project, the smoothing parameter (**α**) is optimized to obtain forecasting results with minimum error.
 
 ---
 
-## 2. Moving Average (MA)
+# 🛠️ Technology Stack
 
-### 🇮🇩
-Moving Average merupakan metode forecasting yang melakukan perataan data historis berdasarkan rata-rata beberapa periode sebelumnya untuk mengidentifikasi pola permintaan.
+| Technology | Description |
+|---|---|
+| Python | Programming Language |
+| Streamlit | Dashboard Development Framework |
+| Pandas | Data Processing |
+| NumPy | Numerical Computation |
+| Matplotlib | Data Visualization |
+| Time Series Analysis | Forecasting Approach |
 
-Ukuran window terbaik dipilih berdasarkan hasil evaluasi error.
-
-### 🇬🇧
-Moving Average is a forecasting method that smooths historical data by calculating the average of previous periods to identify demand patterns.
-
-The optimal window size is selected based on forecasting error evaluation.
-
----
-
-# 📈 Evaluasi Forecasting | Forecasting Evaluation
-
-## 🇮🇩
-
-Performa forecasting dievaluasi menggunakan:
-
-- **MAPE (Mean Absolute Percentage Error)**
-- **SSE (Sum of Squared Error)**
-
-Metrik tersebut digunakan untuk membandingkan performa setiap parameter dan menentukan konfigurasi forecasting terbaik.
-
-## 🇬🇧
-
-Forecasting performance is evaluated using:
-
-- **MAPE (Mean Absolute Percentage Error)**
-- **SSE (Sum of Squared Error)**
-
-These metrics are used to compare forecasting performance and determine the optimal forecasting configuration.
-
----
-
-# 🛠️ Tools & Technologies
-
-```
-Python
-Streamlit
-Pandas
-NumPy
-Data Visualization
-Time Series Forecasting
-Statistical Forecasting
-```
 
 ---
 
@@ -122,28 +65,95 @@ Statistical Forecasting
 
 ```
 Food-Product-Demand-Forecasting
+
 │
 ├── app.py
+│
+├── 1_Forecasting.py
+│
+├── 2_Grafik_Per_Produk.py
+│
+├── 3_Upload_Data.py
+│
 ├── utils.py
-├── cek_excel.py
-├── test_loader.py
+│
 ├── TEMPLATE_PRODUK.xlsx
+│
 └── requirements.txt
 ```
 
----
-
-# 🖥️ Dashboard Preview
-
-(Add dashboard screenshot here)
-
-```
-![Dashboard Preview](dashboard.png)
-```
 
 ---
 
-# 👤 Author
+# 📈 Forecasting Methods
 
-**Nabilah Safa Nur Fatimah**  
-S1 Mathematics — Institut Teknologi Sepuluh Nopember
+## 1. Single Exponential Smoothing (SES)
+
+Single Exponential Smoothing is used to forecast future demand by applying weighted smoothing to historical demand data.
+
+The optimal smoothing parameter (alpha) is selected based on forecasting error evaluation.
+
+
+## 2. Moving Average (MA)
+
+Moving Average predicts future demand based on the average value of historical demand within a selected time window.
+
+The optimal window size is determined by comparing forecasting performance.
+
+
+---
+
+# 📊 Model Evaluation
+
+The forecasting performance is evaluated using:
+
+## MAPE (Mean Absolute Percentage Error)
+
+Measures forecasting accuracy based on the percentage difference between actual and predicted values.
+
+
+## SSE (Sum of Squared Errors)
+
+Measures the total squared difference between actual demand and forecast results.
+
+
+---
+
+# 🚀 How to Run
+
+Install required libraries:
+
+```bash
+pip install -r requirements.txt
+```
+
+Run the application:
+
+```bash
+streamlit run app.py
+```
+
+
+---
+
+# 📌 Project Purpose
+
+This project demonstrates the implementation of time series forecasting methods into an interactive analytics dashboard.
+
+The project combines data processing, forecasting modeling, visualization, and application development using Python.
+
+
+---
+
+# 👩‍💻 Author
+Nabilah Safa Nur Fatimah
+**Mathematics Undergraduate Student**  
+Institut Teknologi Sepuluh Nopember
+
+Interest:
+
+- Data Analytics
+- Forecasting
+- Machine Learning
+- Optimization
+- Computational Modeling
