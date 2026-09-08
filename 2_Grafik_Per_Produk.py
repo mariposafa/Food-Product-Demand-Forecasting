@@ -185,17 +185,17 @@ st.markdown("""
 # ============ HEADER SECTION =============
 st.markdown("""
 <div style="text-align: center; padding: 20px 0;">
-    <h1 style="font-size: 2.8rem; margin-bottom: 10px;">📊 Grafik Tren Permintaan</h1>
+    <h1 style="font-size: 2.8rem; margin-bottom: 10px;">📊 Product Demand Trend Analysis</h1>
     <p style="font-size: 1.2rem; color: #666; max-width: 800px; margin: 0 auto 30px; line-height: 1.6;">
-        Visualisasi interaktif untuk analisis pola permintaan produk dengan <span style="color: #6A11CB; font-weight: 600;">kustomisasi lengkap</span>
+        Interactive visualization platform for analyzing product demand patterns with <span style="color: #6A11CB; font-weight: 600;">advanced customization</span>
     </p>
 </div>
 """, unsafe_allow_html=True)
 
 # ============ FILE UPLOAD SECTION =============
-st.markdown("### 📤 Unggah Data Excel")
+st.markdown("### 📤 Upload Excel Dataset")
 uploaded_file = st.file_uploader(
-    "Pilih file Excel",
+    "Select Excel File",
     type=["xlsx"],
     help="Unggah file Excel multi-sheet dengan kolom: produk, tanggal, permintaan",
     label_visibility="collapsed"
@@ -214,7 +214,7 @@ if uploaded_file:
             produk_list = df["produk"].unique()
             if len(produk_list) > 0:
                 produk = st.selectbox(
-                    "Pilih Produk untuk Analisis",
+                    "Select Product for Analysis",
                     produk_list,
                     help="Pilih produk yang ingin dianalisis tren permintaannya"
                 )
@@ -461,7 +461,7 @@ if uploaded_file:
         # Add watermark
         ax.text(
             0.98, 0.02, 
-            f'JAPFA Analytics • {datetime.now().strftime("%d %b %Y")}',
+            f'Food Product Analytics • {datetime.now().strftime("%d %b %Y")}',
             transform=ax.transAxes,
             fontsize=9,
             color='#9D4EDD',
@@ -477,7 +477,7 @@ if uploaded_file:
         
         # ============ INSIGHTS SECTION =============
         st.markdown('<div class="elegant-divider"></div>', unsafe_allow_html=True)
-        st.markdown("### 💡 Insights Analisis")
+        st.markdown("### 💡 Analysis Insights")
         
         # Calculate trends
         if len(data) > 1:
@@ -588,7 +588,7 @@ else:
             font-size: 18px;
             margin-top: 10px;
         ">
-            📁 Unggah File Excel untuk Memulai
+            📁 Upload Excel File to Start
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -659,7 +659,7 @@ st.markdown("""
 ">
     <div style="max-width: 1200px; margin: 0 auto;">
         <div style="display: flex; justify-content: space-between; align-items: center;">
-            <div>Sistem Analisis Grafik JAPFA © 2025</div>
+            <div>Food Product Demand Analytics © 2025</div>
             <div>Status: <span style="font-weight: 600;">● Aktif</span></div>
             <div>Mode: Visualisasi Tren</div>
         </div>
