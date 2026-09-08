@@ -1,193 +1,431 @@
 import streamlit as st
 
+
+# =========================
+# PAGE CONFIG
+# =========================
+
 st.set_page_config(
-    page_title="Food Product Demand Forecasting Dashboard", 
-    layout="wide",
-    page_icon="📊"
+    page_title="Food Product Demand Forecasting",
+    page_icon="📊",
+    layout="wide"
 )
 
-# ============================================
-# CSS SIMPLE - ELEGANT PURPLE
-# ============================================
+
+# =========================
+# GLOBAL STYLE
+# =========================
 
 st.markdown("""
 <style>
-    .stApp {
-        background: linear-gradient(135deg, #f8f4ff 0%, #f0ebff 50%, #e8e0ff 100%);
-        font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    }
-    
-    h1, h2, h3 {
-        color: #6A11CB !important;
-    }
-    
-    .stButton > button {
-        background: linear-gradient(135deg, #6A11CB 0%, #9D4EDD 100%);
-        color: white;
-        border: none;
-        border-radius: 10px;
-        padding: 12px 24px;
-        font-weight: 600;
-        width: 100%;
-        margin-top: 10px;
-    }
-    
-    .stButton > button:hover {
-        background: linear-gradient(135deg, #5a0db8 0%, #8a45d0 100%);
-    }
-    
-    .card {
-        background: white;
-        border-radius: 16px;
-        padding: 25px;
-        border: 1px solid #e6d9ff;
-        box-shadow: 0 4px 12px rgba(106, 17, 203, 0.1);
-        text-align: center;
-        margin-bottom: 20px;
-    }
-    
-    .icon-container {
-        width: 70px;
-        height: 70px;
-        background: linear-gradient(135deg, #6A11CB 0%, #9D4EDD 100%);
-        border-radius: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 15px;
-        font-size: 30px;
-        color: white;
-    }
+
+html, body, [class*="css"] {
+    font-family: "Inter", "Segoe UI", sans-serif;
+}
+
+
+.stApp {
+    background-color: #F8FAFC;
+}
+
+
+/* Hide default menu */
+#MainMenu {
+    visibility: hidden;
+}
+
+footer {
+    visibility: hidden;
+}
+
+
+/* Title */
+
+h1 {
+    color: #0F172A;
+    font-weight: 800;
+}
+
+
+h2 {
+    color: #1E293B;
+}
+
+
+/* Cards */
+
+.dashboard-card {
+
+    background:white;
+    padding:25px;
+    border-radius:18px;
+
+    border:1px solid #E2E8F0;
+
+    box-shadow:
+    0px 8px 24px rgba(15,23,42,0.06);
+
+    height:230px;
+
+}
+
+
+.card-icon {
+
+    width:55px;
+    height:55px;
+
+    background:#EFF6FF;
+
+    border-radius:14px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:28px;
+
+}
+
+
+.card-title {
+
+    margin-top:15px;
+
+    font-size:20px;
+
+    font-weight:700;
+
+    color:#0F172A;
+
+}
+
+
+.card-text {
+
+    color:#64748B;
+
+    font-size:14px;
+
+    line-height:1.6;
+
+}
+
+
+/* Button */
+
+.stButton button {
+
+    width:100%;
+
+    border-radius:12px;
+
+    background:#2563EB;
+
+    color:white;
+
+    border:none;
+
+    height:45px;
+
+    font-weight:600;
+
+}
+
+
+.stButton button:hover {
+
+    background:#1D4ED8;
+
+    color:white;
+
+}
+
+
+/* Metrics */
+
+[data-testid="stMetric"] {
+
+    background:white;
+
+    padding:20px;
+
+    border-radius:16px;
+
+    border:1px solid #E2E8F0;
+
+}
+
+
 </style>
+
 """, unsafe_allow_html=True)
 
-# ============================================
-# HEADER - BAHASA INDONESIA
-# ============================================
 
-# Header dengan icon dan judul
-col_icon, col_title = st.columns([0.1, 0.9])
-with col_icon:
-    st.markdown("<div style='margin-top: 10px; font-size: 40px; color: #6A11CB;'>📊</div>", unsafe_allow_html=True)
-with col_title:
-    st.title("Food Product Demand Forecasting Dashboard")
 
-st.markdown("""
-<div style='text-align: center; padding: 10px 0 30px;'>
-    <h2 style='color: #6A11CB; margin-bottom: 10px;'>Sistem Analisis & Peramalan Produksi</h2>
-    <p style='color: #666; font-size: 16px;'>
-        Platform profesional untuk peramalan permintaan dengan algoritma SES dan Moving Average
-    </p>
+# =========================
+# HERO SECTION
+# =========================
+
+
+st.markdown(
+"""
+<div style="
+background:white;
+padding:35px;
+border-radius:20px;
+border:1px solid #E2E8F0;
+margin-bottom:30px;
+">
+
+<h1>
+📊 Food Product Demand Forecasting Dashboard
+</h1>
+
+
+<p style="
+font-size:18px;
+color:#475569;
+">
+
+Interactive analytics platform for demand forecasting
+using <b>Single Exponential Smoothing</b> and
+<b>Moving Average</b> methods.
+
+</p>
+
+
 </div>
-""", unsafe_allow_html=True)
+""",
+unsafe_allow_html=True
+)
 
-# ============================================
-# MENU UTAMA - 3 MODUL
-# ============================================
 
-st.markdown("## 📋 Menu Utama")
 
-col1, col2, col3 = st.columns(3)
+# =========================
+# KPI
+# =========================
+
+
+c1,c2,c3 = st.columns(3)
+
+
+with c1:
+    st.metric(
+        "Forecasting Method",
+        "SES & MA"
+    )
+
+
+with c2:
+    st.metric(
+        "Data Processing",
+        "Automated"
+    )
+
+
+with c3:
+    st.metric(
+        "Platform",
+        "Streamlit"
+    )
+
+
+
+st.write("")
+
+
+
+# =========================
+# MODULE SECTION
+# =========================
+
+
+st.subheader("🚀 Dashboard Modules")
+
+
+col1,col2,col3 = st.columns(3)
+
+
+
+def module_card(icon,title,text,button,key,page):
+
+    st.markdown(
+    f"""
+    <div class="dashboard-card">
+
+    <div class="card-icon">
+    {icon}
+    </div>
+
+    <div class="card-title">
+    {title}
+    </div>
+
+    <div class="card-text">
+    {text}
+    </div>
+
+
+    </div>
+
+    """,
+    unsafe_allow_html=True
+    )
+
+
+    if st.button(button,key=key):
+        st.switch_page(page)
+
+
 
 with col1:
-    # Card Peramalan
-    st.markdown("""
-    <div class="card">
-        <div class="icon-container">📈</div>
-        <h3>Peramalan</h3>
-        <p style="color: #666; font-size: 14px; line-height: 1.5;">
-            Analisis peramalan menggunakan metode SES dan Moving Average dengan optimasi parameter otomatis
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    if st.button("Buka Modul Peramalan", key="forecast"):
-        st.switch_page("pages/1_Forecasting.py")
+
+    module_card(
+        "📈",
+        "Forecasting",
+        "Generate demand prediction using SES and Moving Average with optimized parameters.",
+        "Open Forecasting",
+        "forecast",
+        "pages/1_Forecasting.py"
+    )
+
 
 with col2:
-    # Card Grafik
-    st.markdown("""
-    <div class="card">
-        <div class="icon-container">📊</div>
-        <h3>Grafik Per Produk</h3>
-        <p style="color: #666; font-size: 14px; line-height: 1.5;">
-            Visualisasi data dan tren permintaan untuk setiap produk secara interaktif
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    if st.button("Buka Modul Grafik", key="grafik"):
-        st.switch_page("pages/2_Grafik_Per_Produk.py")
+
+    module_card(
+        "📊",
+        "Product Analysis",
+        "Explore historical demand trends and visualize product behavior.",
+        "Open Analysis",
+        "analysis",
+        "pages/2_Grafik_Per_Produk.py"
+    )
+
 
 with col3:
-    # Card Upload
+
+    module_card(
+        "📂",
+        "Data Upload",
+        "Upload Excel dataset for forecasting and analysis.",
+        "Open Upload",
+        "upload",
+        "pages/3_Upload_Data.py"
+    )
+
+
+
+# =========================
+# SYSTEM INFORMATION
+# =========================
+
+
+st.divider()
+
+
+st.subheader("ℹ️ System Information")
+
+
+a,b,c = st.columns(3)
+
+
+with a:
+    st.metric(
+        "Forecast Model",
+        "Time Series"
+    )
+
+
+with b:
+    st.metric(
+        "Evaluation",
+        "MAPE & SSE"
+    )
+
+
+with c:
+    st.metric(
+        "Interface",
+        "Interactive Dashboard"
+    )
+
+
+
+# =========================
+# GUIDE
+# =========================
+
+
+with st.expander("📚 User Guide"):
+
     st.markdown("""
-    <div class="card">
-        <div class="icon-container">📁</div>
-        <h3>Unggah Data</h3>
-        <p style="color: #666; font-size: 14px; line-height: 1.5;">
-            Unggah file Excel untuk analisis dengan format produk, tanggal, permintaan
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    if st.button("Buka Modul Upload", key="upload"):
-        st.switch_page("pages/3_Upload_Data.py")
 
-# ============================================
-# INFORMASI SISTEM
-# ============================================
+### Workflow
 
-st.markdown("---")
-st.markdown("## ℹ️ Informasi Sistem")
+1. Upload demand dataset
+2. Select product
+3. Run forecasting model
+4. Evaluate forecasting performance
 
-# Metrics dalam 3 kolom
-col_info1, col_info2, col_info3 = st.columns(3)
 
-with col_info1:
-    st.metric("Versi Sistem", "v2.1.0")
-    
-with col_info2:
-    st.metric("Status", "✅ Aktif")
-    
-with col_info3:
-    st.metric("Akurasi", "Setara Minitab")
+### Supported Data Format
 
-# ============================================
-# PETUNJUK PENGGUNAAN
-# ============================================
+Excel (.xlsx)
 
-with st.expander("📚 Panduan Penggunaan"):
-    st.markdown("""
-    ### Cara Menggunakan Sistem:
-    
-    1. **Unggah Data** - Gunakan menu "Unggah Data" untuk mengupload file Excel
-    2. **Analisis Peramalan** - Buka menu "Peramalan" untuk analisis SES dan MA
-    3. **Lihat Grafik** - Gunakan menu "Grafik Per Produk" untuk visualisasi
-    
-    ### Format Data yang Didukung:
-    - File Excel (.xlsx) dengan multi sheet
-    - Kolom wajib: `produk`, `tanggal`, `permintaan`
-    - Format tanggal: YYYY-MM-DD
-    
-    ### Algoritma yang Tersedia:
-    - **SES (Single Exponential Smoothing)** - Optimasi alpha otomatis
-    - **MA (Moving Average)** - Optimasi window otomatis
-    
-    ### Fitur Utama:
-    - Optimasi parameter otomatis
-    - Perhitungan MAPE (Mean Absolute Percentage Error)
-    - Ekspor hasil dalam format CSV dan PNG
-    - Dashboard visualisasi interaktif
-    """)
+Required columns:
 
-# ============================================
+- produk
+- tanggal
+- permintaan
+
+
+### Available Methods
+
+**Single Exponential Smoothing**
+
+Forecasting method using smoothing parameter optimization.
+
+
+**Moving Average**
+
+Forecasting method based on historical demand window.
+
+
+### Evaluation Metrics
+
+- MAPE
+- SSE
+
+""")
+
+
+# =========================
 # FOOTER
-# ============================================
+# =========================
 
-st.markdown("---")
-st.markdown("""
-<div style='text-align: center; color: #666; font-size: 14px; padding: 20px;'>
-    <strong>Sistem Forecasting Food Product v2.1</strong> • Dikembangkan oleh Kelompok 17 APTEK © 2025
-</div>
-""", unsafe_allow_html=True)
+
+st.divider()
+
+
+st.markdown(
+"""
+<center>
+
+<b>
+Food Product Demand Forecasting Dashboard
+</b>
+
+<br>
+
+Built with Python & Streamlit
+
+<br>
+
+Data Analytics Portfolio Project
+
+</center>
+
+""",
+unsafe_allow_html=True
+)
