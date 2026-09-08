@@ -1,9 +1,9 @@
 import streamlit as st
 
 
-# =========================
+# ==================================================
 # PAGE CONFIG
-# =========================
+# ==================================================
 
 st.set_page_config(
     page_title="Food Product Demand Forecasting",
@@ -12,75 +12,150 @@ st.set_page_config(
 )
 
 
-# =========================
-# GLOBAL STYLE
-# =========================
+# ==================================================
+# CUSTOM CSS
+# ==================================================
 
 st.markdown("""
 <style>
 
+
+/* GLOBAL */
+
 html, body, [class*="css"] {
-    font-family: "Inter", "Segoe UI", sans-serif;
+
+    font-family:
+    "Inter",
+    "Segoe UI",
+    sans-serif;
+
 }
 
 
 .stApp {
-    background-color: #F8FAFC;
+
+    background:#F8FAFC;
+
 }
 
 
-/* Hide default menu */
+/* Hide Streamlit menu */
+
 #MainMenu {
-    visibility: hidden;
+    visibility:hidden;
 }
+
 
 footer {
-    visibility: hidden;
+    visibility:hidden;
 }
 
 
-/* Title */
 
-h1 {
-    color: #0F172A;
-    font-weight: 800;
-}
+/* HEADER */
 
-
-h2 {
-    color: #1E293B;
-}
-
-
-/* Cards */
-
-.dashboard-card {
+.hero {
 
     background:white;
-    padding:25px;
-    border-radius:18px;
+
+    padding:40px;
+
+    border-radius:22px;
 
     border:1px solid #E2E8F0;
 
     box-shadow:
-    0px 8px 24px rgba(15,23,42,0.06);
+    0 10px 30px rgba(15,23,42,0.05);
 
-    height:230px;
+    margin-bottom:25px;
 
 }
+
+
+
+.hero-title {
+
+    font-size:38px;
+
+    font-weight:800;
+
+    color:#0F172A;
+
+}
+
+
+.hero-subtitle {
+
+    font-size:18px;
+
+    color:#475569;
+
+    line-height:1.6;
+
+}
+
+
+
+
+/* TAG */
+
+.tag {
+
+    display:inline-block;
+
+    background:#EFF6FF;
+
+    color:#2563EB;
+
+    padding:7px 16px;
+
+    border-radius:20px;
+
+    margin-right:8px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+
+
+/* CARD */
+
+.dashboard-card {
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:18px;
+
+    border:1px solid #E2E8F0;
+
+    height:220px;
+
+    box-shadow:
+    0px 8px 25px rgba(15,23,42,0.05);
+
+}
+
 
 
 .card-icon {
 
     width:55px;
+
     height:55px;
+
+    border-radius:15px;
 
     background:#EFF6FF;
 
-    border-radius:14px;
-
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     font-size:28px;
@@ -88,11 +163,12 @@ h2 {
 }
 
 
+
 .card-title {
 
-    margin-top:15px;
+    margin-top:18px;
 
-    font-size:20px;
+    font-size:21px;
 
     font-weight:700;
 
@@ -101,308 +177,443 @@ h2 {
 }
 
 
-.card-text {
 
-    color:#64748B;
+.card-description {
+
+    margin-top:10px;
 
     font-size:14px;
+
+    color:#64748B;
 
     line-height:1.6;
 
 }
 
 
-/* Button */
+
+/* BUTTON */
 
 .stButton button {
 
+
     width:100%;
 
-    border-radius:12px;
+
+    margin-top:15px;
+
 
     background:#2563EB;
 
+
     color:white;
+
 
     border:none;
 
+
+    border-radius:12px;
+
+
     height:45px;
+
 
     font-weight:600;
 
+
 }
+
 
 
 .stButton button:hover {
 
+
     background:#1D4ED8;
+
 
     color:white;
 
+
 }
 
 
-/* Metrics */
+
+/* METRIC */
 
 [data-testid="stMetric"] {
 
+
     background:white;
+
 
     padding:20px;
 
+
     border-radius:16px;
+
 
     border:1px solid #E2E8F0;
 
+
 }
+
 
 
 </style>
 
-""", unsafe_allow_html=True)
+""",
+unsafe_allow_html=True)
 
 
 
-# =========================
+# ==================================================
 # HERO SECTION
-# =========================
+# ==================================================
 
 
-st.markdown(
-"""
-<div style="
-background:white;
-padding:35px;
-border-radius:20px;
-border:1px solid #E2E8F0;
-margin-bottom:30px;
-">
+st.markdown("""
+<div class="hero">
 
-<h1>
+
+<div class="hero-title">
+
 📊 Food Product Demand Forecasting Dashboard
-</h1>
+
+</div>
 
 
-<p style="
-font-size:18px;
-color:#475569;
-">
+<p class="hero-subtitle">
 
-Interactive analytics platform for demand forecasting
+An interactive analytics platform for forecasting product demand
 using <b>Single Exponential Smoothing</b> and
 <b>Moving Average</b> methods.
+
+Designed for time series analysis,
+demand prediction, and forecasting evaluation.
 
 </p>
 
 
+<span class="tag">
+Python
+</span>
+
+
+<span class="tag">
+Streamlit
+</span>
+
+
+<span class="tag">
+Time Series
+</span>
+
+
+<span class="tag">
+Data Analytics
+</span>
+
+
 </div>
+
 """,
-unsafe_allow_html=True
+unsafe_allow_html=True)
+
+
+
+# ==================================================
+# PROJECT OVERVIEW
+# ==================================================
+
+
+st.subheader("📌 Project Overview")
+
+
+st.write(
+"""
+This dashboard provides an end-to-end workflow for food product demand forecasting.
+
+Users can upload demand datasets, analyze historical patterns,
+generate forecasts, and evaluate model performance using forecasting metrics.
+"""
 )
 
 
 
-# =========================
-# KPI
-# =========================
-
-
-c1,c2,c3 = st.columns(3)
-
-
-with c1:
-    st.metric(
-        "Forecasting Method",
-        "SES & MA"
-    )
-
-
-with c2:
-    st.metric(
-        "Data Processing",
-        "Automated"
-    )
-
-
-with c3:
-    st.metric(
-        "Platform",
-        "Streamlit"
-    )
-
+# ==================================================
+# KPI INFORMATION
+# ==================================================
 
 
 st.write("")
 
 
+col1,col2,col3 = st.columns(3)
 
-# =========================
+
+with col1:
+
+    st.metric(
+        "Forecast Model",
+        "SES & MA"
+    )
+
+
+with col2:
+
+    st.metric(
+        "Evaluation Metric",
+        "MAPE & SSE"
+    )
+
+
+with col3:
+
+    st.metric(
+        "Application",
+        "Streamlit Dashboard"
+    )
+
+
+
+# ==================================================
 # MODULE SECTION
-# =========================
+# ==================================================
+
+
+st.divider()
 
 
 st.subheader("🚀 Dashboard Modules")
+
+
+
+def create_module(
+        icon,
+        title,
+        description,
+        button,
+        key,
+        page):
+
+
+    st.markdown(
+    f"""
+
+    <div class="dashboard-card">
+
+
+    <div class="card-icon">
+
+    {icon}
+
+    </div>
+
+
+    <div class="card-title">
+
+    {title}
+
+    </div>
+
+
+    <div class="card-description">
+
+    {description}
+
+    </div>
+
+
+    </div>
+
+
+    """,
+
+    unsafe_allow_html=True
+    )
+
+
+    if st.button(button,key=key):
+
+        st.switch_page(page)
+
+
 
 
 col1,col2,col3 = st.columns(3)
 
 
 
-def module_card(icon,title,text,button,key,page):
-
-    st.markdown(
-    f"""
-    <div class="dashboard-card">
-
-    <div class="card-icon">
-    {icon}
-    </div>
-
-    <div class="card-title">
-    {title}
-    </div>
-
-    <div class="card-text">
-    {text}
-    </div>
-
-
-    </div>
-
-    """,
-    unsafe_allow_html=True
-    )
-
-
-    if st.button(button,key=key):
-        st.switch_page(page)
-
-
-
 with col1:
 
-    module_card(
+
+    create_module(
+
         "📈",
+
         "Forecasting",
-        "Generate demand prediction using SES and Moving Average with optimized parameters.",
+
+        """
+        Generate future demand predictions using
+        Single Exponential Smoothing and Moving Average
+        with parameter optimization.
+        """,
+
         "Open Forecasting",
+
         "forecast",
-        "pages/1_Forecasting.py"
+
+        "1_Forecasting.py"
+
     )
+
 
 
 with col2:
 
-    module_card(
+
+    create_module(
+
         "📊",
+
         "Product Analysis",
-        "Explore historical demand trends and visualize product behavior.",
+
+        """
+        Explore historical demand trends and analyze
+        product-level demand patterns through visualization.
+        """,
+
         "Open Analysis",
+
         "analysis",
-        "pages/2_Grafik_Per_Produk.py"
+
+        "2_Grafik_Per_Produk.py"
+
     )
+
 
 
 with col3:
 
-    module_card(
+
+    create_module(
+
         "📂",
-        "Data Upload",
-        "Upload Excel dataset for forecasting and analysis.",
+
+        "Data Management",
+
+        """
+        Upload and validate Excel datasets before
+        performing forecasting analysis.
+        """,
+
         "Open Upload",
+
         "upload",
-        "pages/3_Upload_Data.py"
+
+        "3_Upload_Data.py"
+
     )
 
 
 
-# =========================
+# ==================================================
 # SYSTEM INFORMATION
-# =========================
+# ==================================================
 
 
 st.divider()
 
 
-st.subheader("ℹ️ System Information")
+st.subheader("⚙️ System Information")
 
 
 a,b,c = st.columns(3)
 
 
 with a:
+
     st.metric(
-        "Forecast Model",
-        "Time Series"
+        "Data Input",
+        "Excel (.xlsx)"
     )
 
 
 with b:
+
     st.metric(
-        "Evaluation",
-        "MAPE & SSE"
+        "Forecast Type",
+        "Time Series"
     )
 
 
 with c:
+
     st.metric(
-        "Interface",
-        "Interactive Dashboard"
+        "Model Evaluation",
+        "Error Analysis"
     )
 
 
 
-# =========================
+# ==================================================
 # GUIDE
-# =========================
+# ==================================================
 
 
 with st.expander("📚 User Guide"):
 
-    st.markdown("""
 
-### Workflow
+    st.markdown(
+    """
 
-1. Upload demand dataset
-2. Select product
-3. Run forecasting model
+## Workflow
+
+1. Upload product demand dataset
+2. Select product data
+3. Run forecasting analysis
 4. Evaluate forecasting performance
 
 
-### Supported Data Format
+## Supported Dataset
 
-Excel (.xlsx)
+Excel format (.xlsx)
 
 Required columns:
 
-- produk
-- tanggal
-- permintaan
+- product
+- date
+- demand
 
 
-### Available Methods
-
-**Single Exponential Smoothing**
-
-Forecasting method using smoothing parameter optimization.
+## Forecasting Methods
 
 
-**Moving Average**
+### Single Exponential Smoothing (SES)
 
-Forecasting method based on historical demand window.
-
-
-### Evaluation Metrics
-
-- MAPE
-- SSE
-
-""")
+A forecasting method using smoothing parameters
+to predict future demand.
 
 
-# =========================
+### Moving Average (MA)
+
+A forecasting method based on historical demand windows.
+
+
+## Evaluation Metrics
+
+- MAPE (Mean Absolute Percentage Error)
+- SSE (Sum of Squared Error)
+
+
+"""
+)
+
+
+
+# ==================================================
 # FOOTER
-# =========================
+# ==================================================
 
 
 st.divider()
