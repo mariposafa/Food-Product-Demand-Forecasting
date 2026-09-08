@@ -302,10 +302,10 @@ st.markdown("""
 # ============ APP HEADER =============
 st.markdown("""
 <div style="text-align: center; padding: 20px 0;">
-    <h1 style="font-size: 2.8rem; margin-bottom: 10px;">📊 Sistem Forecasting JAPFA</h1>
+    <h1 style="font-size: 2.8rem; margin-bottom: 10px;">📊 Food Product Demand Forecasting</h1>
     <p style="font-size: 1.2rem; color: #666; max-width: 800px; margin: 0 auto 30px; line-height: 1.6;">
-        Sistem Forecasting Profesional dengan <span style="color: #6A11CB; font-weight: 600;">Single Exponential Smoothing</span> 
-        dan <span style="color: #2575FC; font-weight: 600;">Moving Average</span> untuk Analisis Produksi Modern
+        Interactive demand forecasting system using <span style="color: #6A11CB; font-weight: 600;">Single Exponential Smoothing</span> 
+        and <span style="color: #2575FC; font-weight: 600;">Moving Average</span> for food product demand analysis
     </p>
 </div>
 """, unsafe_allow_html=True)
@@ -476,9 +476,9 @@ with st.sidebar:
     
     st.markdown("---")
     
-    st.markdown("### 📤 Unggah Data")
+    st.markdown("### 📤 Upload Dataset")
     uploaded_file = st.file_uploader(
-        "Pilih file Excel",
+        "Select Excel File",
         type=["xlsx"],
         help="Unggah file Excel multi-sheet dengan kolom: produk, tanggal, permintaan"
     )
@@ -507,9 +507,9 @@ with st.sidebar:
     st.markdown("""
     <div style="font-size: 0.85rem; color: #666; line-height: 1.5;">
     <b>Versi:</b> 2.0.0<br>
-    <b>Akurasi:</b> Setara Minitab<br>
+    <b>Evaluation:</b> MAPE & SSE<br>
     <b>Algoritma:</b> SES & MA<br>
-    <b>Pengembang:</b> Kelompok 17 APTEK
+    <b>Developer:</b> Mathematics Undergraduate Student
     </div>
     """, unsafe_allow_html=True)
 
@@ -522,7 +522,7 @@ if uploaded_file:
     # Product selection with elegant header
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
-        st.markdown("### 📦 Pilih Produk")
+        st.markdown("### 📦 Select Product")
         produk = st.selectbox(
             "Pilih produk untuk analisis",
             produk_list,
@@ -591,7 +591,7 @@ if uploaded_file:
         """, unsafe_allow_html=True)
     
     # ========== OPTIMAL PARAMETERS SECTION ==========
-    st.markdown("## 🎯 Parameter Optimal (Otomatis)")
+    st.markdown("## 🎯 Optimal Parameters (Automatic)")
     
     with st.spinner('🔍 Mencari parameter optimal...'):
         best_alpha, ses_forecast_best, ses_mape_best, ses_results = find_best_ses_params(y, produk)
@@ -829,7 +829,7 @@ if uploaded_file:
     forecast_idx = min(92, len(y)-1)
     
     # ========== FORECAST RESULTS ==========
-    st.markdown("## 📈 Hasil Forecasting")
+    st.markdown("## 📈 Forecast Result")
     
     col_res1, col_res2 = st.columns(2)
     
@@ -1021,7 +1021,7 @@ if uploaded_file:
     st.pyplot(fig3)
     
     # ========== DETAIL TABLE ==========
-    st.markdown("## 📋 Detail Perhitungan")
+    st.markdown("## 📋 Calculation Details")
     
     # Calculate metrics
     ses_error = y - ses_F
@@ -1064,7 +1064,7 @@ if uploaded_file:
     )
     
     # ========== CONCLUSION ==========
-    st.markdown("## 📝 Kesimpulan Analisis")
+    st.markdown("## 📝 Analysis Summary")
     
     # Determine best method for all cases
     if ses_mape_best < ma_mape_best:
@@ -1186,7 +1186,7 @@ if uploaded_file:
     
     
     # ========== DOWNLOAD SECTION ==========
-    st.markdown("## 💾 Ekspor Hasil")
+    st.markdown("## 💾 Export Results")
     
     col_dl1, col_dl2, col_dl3 = st.columns(3)
     
